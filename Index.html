@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Protected Download</title>
+</head>
+<body>
+
+    <h2>File Download</h2>
+
+    <!-- Tombol Awal -->
+    <button onclick="showPassword()">Download?</button>
+
+    <!-- Form Password (awalnya disembunyikan) -->
+    <div id="passwordBox" style="display:none; margin-top:15px;">
+        <p>أدخل كلمة المرور :</p>
+        <input type="password" id="passwordInput">
+        <button onclick="checkPassword()">Submit</button>
+        <p id="message" style="color:red;"></p>
+    </div>
+
+<script>
+    function showPassword() {
+        document.getElementById("passwordBox").style.display = "block";
+    }
+
+    function checkPassword() {
+        var correctPassword = "adminwanz123";
+        var userPassword = document.getElementById("passwordInput").value;
+        var message = document.getElementById("message");
+
+        if (userPassword === correctPassword) {
+            message.style.color = "green";
+            message.innerHTML = "كلمة المرور صحيحة، سيبدأ التنزيل. ...";
+
+            // Trigger download
+            var link = document.createElement("a");
+            link.href = "files/cryptosss.zip";  // contoh lokasi file
+            link.download = "";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+        } else {
+            message.style.color = "red";
+            message.innerHTML = "كلمة المرور غير صحيحة، يرجى المحاولة مرة أخرى.!!";
+        }
+    }
+</script>
+
+</body>
+  </html>
